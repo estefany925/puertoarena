@@ -1,0 +1,743 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Toldos & Decoraciones | Lima, Perú</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --gold: #C9A84C;
+    --gold-light: #E8D08A;
+    --dark: #0D0D0D;
+    --dark-2: #141414;
+    --dark-3: #1C1C1C;
+    --white: #F9F5EE;
+    --text-muted: #888;
+    --accent: #C9A84C;
+  }
+
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--dark);
+    color: var(--white);
+    font-family: 'Outfit', sans-serif;
+    font-weight: 300;
+    overflow-x: hidden;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    padding: 1.2rem 4rem;
+    display: flex; justify-content: space-between; align-items: center;
+    background: linear-gradient(to bottom, rgba(13,13,13,0.95), transparent);
+    transition: background 0.3s;
+  }
+  nav.scrolled { background: rgba(13,13,13,0.98); border-bottom: 1px solid rgba(201,168,76,0.2); }
+  .nav-logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.4rem;
+    letter-spacing: 0.05em;
+    color: var(--gold);
+  }
+  .nav-logo span { color: var(--white); font-style: italic; }
+  .nav-links { display: flex; gap: 2.5rem; list-style: none; }
+  .nav-links a {
+    text-decoration: none; color: var(--white); font-size: 0.85rem;
+    letter-spacing: 0.12em; text-transform: uppercase;
+    opacity: 0.8; transition: opacity 0.2s, color 0.2s;
+  }
+  .nav-links a:hover { opacity: 1; color: var(--gold); }
+  .nav-cta {
+    background: var(--gold); color: var(--dark); padding: 0.55rem 1.5rem;
+    border: none; font-family: 'Outfit', sans-serif; font-weight: 600;
+    font-size: 0.8rem; letter-spacing: 0.1em; text-transform: uppercase;
+    cursor: pointer; transition: background 0.2s, transform 0.2s;
+    text-decoration: none;
+  }
+  .nav-cta:hover { background: var(--gold-light); transform: translateY(-1px); }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    display: flex; flex-direction: column; justify-content: center;
+    align-items: center; text-align: center;
+    padding: 8rem 2rem 4rem;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero-bg {
+    position: absolute; inset: 0;
+    background:
+      radial-gradient(ellipse 80% 60% at 50% 40%, rgba(201,168,76,0.08) 0%, transparent 70%),
+      radial-gradient(ellipse 40% 40% at 20% 80%, rgba(201,168,76,0.05) 0%, transparent 60%);
+  }
+  .hero-grid-lines {
+    position: absolute; inset: 0; opacity: 0.04;
+    background-image:
+      linear-gradient(var(--gold) 1px, transparent 1px),
+      linear-gradient(90deg, var(--gold) 1px, transparent 1px);
+    background-size: 60px 60px;
+  }
+  .hero-badge {
+    font-size: 0.7rem; letter-spacing: 0.25em; text-transform: uppercase;
+    color: var(--gold); border: 1px solid rgba(201,168,76,0.4);
+    padding: 0.4rem 1.2rem; margin-bottom: 2rem;
+    animation: fadeUp 0.8s ease both;
+  }
+  .hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(3rem, 7vw, 6.5rem);
+    font-weight: 400; line-height: 1.05;
+    margin-bottom: 1.5rem;
+    animation: fadeUp 0.9s 0.1s ease both;
+  }
+  .hero h1 em { font-style: italic; color: var(--gold); }
+  .hero-sub {
+    font-size: clamp(0.95rem, 2vw, 1.1rem);
+    color: rgba(249,245,238,0.6);
+    max-width: 520px; line-height: 1.8;
+    margin-bottom: 3rem;
+    animation: fadeUp 1s 0.2s ease both;
+  }
+  .hero-actions {
+    display: flex; gap: 1.2rem; flex-wrap: wrap; justify-content: center;
+    animation: fadeUp 1s 0.3s ease both;
+  }
+  .btn-primary {
+    background: var(--gold); color: var(--dark);
+    padding: 0.9rem 2.5rem; border: none; cursor: pointer;
+    font-family: 'Outfit', sans-serif; font-weight: 600;
+    font-size: 0.85rem; letter-spacing: 0.1em; text-transform: uppercase;
+    transition: all 0.25s; text-decoration: none; display: inline-block;
+  }
+  .btn-primary:hover { background: var(--gold-light); transform: translateY(-2px); box-shadow: 0 8px 30px rgba(201,168,76,0.3); }
+  .btn-outline {
+    background: transparent; color: var(--white);
+    padding: 0.9rem 2.5rem; border: 1px solid rgba(249,245,238,0.3);
+    cursor: pointer; font-family: 'Outfit', sans-serif;
+    font-size: 0.85rem; letter-spacing: 0.1em; text-transform: uppercase;
+    transition: all 0.25s; text-decoration: none; display: inline-block;
+  }
+  .btn-outline:hover { border-color: var(--gold); color: var(--gold); transform: translateY(-2px); }
+
+  .hero-scroll {
+    position: absolute; bottom: 2.5rem; left: 50%; transform: translateX(-50%);
+    display: flex; flex-direction: column; align-items: center; gap: 0.5rem;
+    color: rgba(249,245,238,0.4); font-size: 0.7rem; letter-spacing: 0.2em; text-transform: uppercase;
+    animation: fadeUp 1s 0.5s ease both;
+  }
+  .scroll-line {
+    width: 1px; height: 40px;
+    background: linear-gradient(to bottom, var(--gold), transparent);
+    animation: scrollPulse 2s infinite;
+  }
+
+  /* STATS BAR */
+  .stats-bar {
+    border-top: 1px solid rgba(201,168,76,0.2);
+    border-bottom: 1px solid rgba(201,168,76,0.2);
+    background: var(--dark-2);
+    display: grid; grid-template-columns: repeat(4, 1fr);
+  }
+  .stat-item {
+    padding: 2.5rem 2rem; text-align: center;
+    border-right: 1px solid rgba(201,168,76,0.15);
+  }
+  .stat-item:last-child { border-right: none; }
+  .stat-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.5rem; color: var(--gold); display: block; margin-bottom: 0.4rem;
+  }
+  .stat-label { font-size: 0.75rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--text-muted); }
+
+  /* SECTIONS */
+  section { padding: 7rem 4rem; }
+  .section-label {
+    font-size: 0.7rem; letter-spacing: 0.3em; text-transform: uppercase;
+    color: var(--gold); margin-bottom: 1rem;
+  }
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2rem, 4vw, 3.2rem);
+    font-weight: 400; line-height: 1.15; margin-bottom: 1.5rem;
+  }
+  .section-title em { font-style: italic; color: var(--gold); }
+  .section-desc {
+    color: rgba(249,245,238,0.55); font-size: 1rem;
+    line-height: 1.9; max-width: 520px;
+  }
+
+  /* SERVICIOS */
+  #servicios { background: var(--dark-2); }
+  .servicios-layout {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 5rem; align-items: start;
+  }
+  .servicios-grid {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 1px;
+    background: rgba(201,168,76,0.15);
+  }
+  .servicio-card {
+    background: var(--dark-3); padding: 2.5rem 2rem;
+    transition: background 0.25s;
+    cursor: default;
+  }
+  .servicio-card:hover { background: #222; }
+  .servicio-icon {
+    font-size: 1.8rem; margin-bottom: 1.2rem; display: block;
+  }
+  .servicio-card h3 {
+    font-family: 'Playfair Display', serif; font-size: 1.1rem;
+    font-weight: 400; margin-bottom: 0.6rem; color: var(--white);
+  }
+  .servicio-card p {
+    font-size: 0.85rem; color: var(--text-muted); line-height: 1.7;
+  }
+  .servicio-tag {
+    display: inline-block; margin-top: 1rem;
+    font-size: 0.65rem; letter-spacing: 0.15em; text-transform: uppercase;
+    color: var(--gold); border-bottom: 1px solid var(--gold); padding-bottom: 2px;
+  }
+
+  /* GALERÍA */
+  #galeria { background: var(--dark); }
+  .galeria-header {
+    display: flex; justify-content: space-between; align-items: flex-end;
+    margin-bottom: 3.5rem;
+  }
+  .galeria-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: auto;
+    gap: 3px;
+  }
+  .galeria-item {
+    position: relative; overflow: hidden;
+    aspect-ratio: 4/3;
+    cursor: pointer;
+  }
+  .galeria-item:nth-child(1) { grid-column: span 2; aspect-ratio: 16/9; }
+  .galeria-item:nth-child(5) { grid-column: span 2; aspect-ratio: 16/9; }
+  .galeria-item img {
+    width: 100%; height: 100%; object-fit: cover;
+    transition: transform 0.6s ease, filter 0.4s;
+    filter: brightness(0.85) saturate(0.9);
+  }
+  .galeria-item:hover img { transform: scale(1.07); filter: brightness(0.7) saturate(1.1); }
+  .galeria-overlay {
+    position: absolute; inset: 0;
+    background: linear-gradient(to top, rgba(13,13,13,0.85) 0%, rgba(13,13,13,0.1) 50%, transparent 100%);
+    opacity: 0; transition: opacity 0.4s;
+    display: flex; flex-direction: column; justify-content: flex-end;
+    padding: 2rem;
+  }
+  .galeria-item:hover .galeria-overlay { opacity: 1; }
+  .galeria-overlay h4 {
+    font-family: 'Playfair Display', serif; font-size: 1.1rem;
+    margin-bottom: 0.3rem; transform: translateY(8px);
+    transition: transform 0.4s;
+  }
+  .galeria-item:hover .galeria-overlay h4 { transform: translateY(0); }
+  .galeria-overlay p {
+    font-size: 0.75rem; color: var(--gold); letter-spacing: 0.12em; text-transform: uppercase;
+    transform: translateY(8px); transition: transform 0.4s 0.05s;
+  }
+  .galeria-item:hover .galeria-overlay p { transform: translateY(0); }
+  .galeria-line {
+    width: 30px; height: 1px; background: var(--gold);
+    margin-bottom: 0.8rem;
+    transform: scaleX(0); transform-origin: left;
+    transition: transform 0.4s 0.1s;
+  }
+  .galeria-item:hover .galeria-line { transform: scaleX(1); }
+
+  /* POR QUÉ */
+  #porque { background: var(--dark-2); }
+  .porque-layout { display: grid; grid-template-columns: 1fr 1.2fr; gap: 6rem; align-items: center; }
+  .porque-list { list-style: none; margin-top: 2rem; }
+  .porque-list li {
+    display: flex; gap: 1.2rem; padding: 1.4rem 0;
+    border-bottom: 1px solid rgba(201,168,76,0.12);
+    align-items: flex-start;
+  }
+  .porque-list li:first-child { border-top: 1px solid rgba(201,168,76,0.12); }
+  .porque-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.4rem; color: var(--gold); opacity: 0.5;
+    min-width: 2rem; padding-top: 2px;
+  }
+  .porque-text h4 {
+    font-size: 0.95rem; font-weight: 500; margin-bottom: 0.3rem;
+  }
+  .porque-text p { font-size: 0.83rem; color: var(--text-muted); line-height: 1.7; }
+  .porque-img-wrap {
+    position: relative;
+  }
+  .porque-img-wrap img {
+    width: 100%; aspect-ratio: 3/4; object-fit: cover; display: block;
+    filter: brightness(0.8) saturate(0.8);
+  }
+  .porque-img-badge {
+    position: absolute; bottom: -1.5rem; left: -1.5rem;
+    background: var(--gold); color: var(--dark);
+    padding: 1.5rem 2rem;
+  }
+  .porque-img-badge strong {
+    font-family: 'Playfair Display', serif; font-size: 2.2rem;
+    display: block; line-height: 1;
+  }
+  .porque-img-badge span { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.1em; }
+
+  /* CONTACTO */
+  #contacto {
+    background: var(--dark);
+    border-top: 1px solid rgba(201,168,76,0.2);
+  }
+  .contacto-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 6rem; align-items: start; }
+  .form-group { margin-bottom: 1.5rem; }
+  .form-group label {
+    display: block; font-size: 0.7rem; letter-spacing: 0.2em;
+    text-transform: uppercase; color: var(--text-muted); margin-bottom: 0.6rem;
+  }
+  .form-group input,
+  .form-group select,
+  .form-group textarea {
+    width: 100%; background: var(--dark-2);
+    border: 1px solid rgba(201,168,76,0.2);
+    color: var(--white); padding: 0.9rem 1.1rem;
+    font-family: 'Outfit', sans-serif; font-size: 0.9rem;
+    outline: none; transition: border-color 0.2s;
+    -webkit-appearance: none;
+  }
+  .form-group input:focus,
+  .form-group select:focus,
+  .form-group textarea:focus { border-color: var(--gold); }
+  .form-group select option { background: var(--dark-2); }
+  .form-group textarea { resize: vertical; min-height: 120px; }
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1.2rem; }
+  .contact-info { padding-top: 1rem; }
+  .contact-item {
+    display: flex; gap: 1.2rem; align-items: flex-start;
+    padding: 1.5rem 0; border-bottom: 1px solid rgba(201,168,76,0.1);
+  }
+  .contact-icon {
+    width: 40px; height: 40px; background: rgba(201,168,76,0.1);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1rem; flex-shrink: 0;
+  }
+  .contact-item h4 { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.12em; color: var(--gold); margin-bottom: 0.3rem; }
+  .contact-item p { font-size: 0.9rem; color: rgba(249,245,238,0.7); }
+  .contact-item a { color: rgba(249,245,238,0.7); text-decoration: none; }
+  .contact-item a:hover { color: var(--gold); }
+
+  /* FOOTER */
+  footer {
+    background: var(--dark-2);
+    border-top: 1px solid rgba(201,168,76,0.15);
+    padding: 3rem 4rem;
+    display: flex; justify-content: space-between; align-items: center;
+    flex-wrap: wrap; gap: 1rem;
+  }
+  .footer-logo {
+    font-family: 'Playfair Display', serif; font-size: 1.2rem; color: var(--gold);
+  }
+  .footer-logo span { color: var(--white); font-style: italic; }
+  footer p { font-size: 0.78rem; color: var(--text-muted); }
+  .footer-links { display: flex; gap: 2rem; }
+  .footer-links a { font-size: 0.75rem; color: var(--text-muted); text-decoration: none; letter-spacing: 0.1em; text-transform: uppercase; }
+  .footer-links a:hover { color: var(--gold); }
+
+  /* ANIMATIONS */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes scrollPulse {
+    0%, 100% { opacity: 0.4; }
+    50% { opacity: 1; }
+  }
+  .reveal {
+    opacity: 0; transform: translateY(30px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+
+  /* WHATSAPP FLOAT */
+  .wa-float {
+    position: fixed; bottom: 2rem; right: 2rem; z-index: 200;
+    width: 56px; height: 56px; background: #25D366;
+    border-radius: 50%; display: flex; align-items: center; justify-content: center;
+    box-shadow: 0 4px 20px rgba(37,211,102,0.4);
+    text-decoration: none; transition: transform 0.2s, box-shadow 0.2s;
+  }
+  .wa-float:hover { transform: scale(1.1); box-shadow: 0 6px 28px rgba(37,211,102,0.55); }
+  .wa-float svg { width: 28px; height: 28px; fill: white; }
+
+  /* RESPONSIVE */
+  @media (max-width: 900px) {
+    nav { padding: 1rem 1.5rem; }
+    .nav-links { display: none; }
+    section { padding: 5rem 1.5rem; }
+    .stats-bar { grid-template-columns: repeat(2, 1fr); }
+    .stat-item:nth-child(2) { border-right: none; }
+    .servicios-layout,
+    .porque-layout,
+    .contacto-layout { grid-template-columns: 1fr; gap: 3rem; }
+    .galeria-grid { grid-template-columns: 1fr 1fr; }
+    .galeria-item:nth-child(1),
+    .galeria-item:nth-child(5) { grid-column: span 2; }
+    .form-row { grid-template-columns: 1fr; }
+    footer { flex-direction: column; text-align: center; padding: 2rem 1.5rem; }
+    .porque-img-badge { bottom: 0; left: 0; }
+    .galeria-header { flex-direction: column; align-items: flex-start; gap: 1rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="navbar">
+  <div class="nav-logo">Toldos <span>& Eventos</span></div>
+  <ul class="nav-links">
+    <li><a href="#servicios">Servicios</a></li>
+    <li><a href="#galeria">Galería</a></li>
+    <li><a href="#porque">Nosotros</a></li>
+    <li><a href="#contacto">Contacto</a></li>
+  </ul>
+  <a href="https://wa.me/51923756071" class="nav-cta" target="_blank">Cotizar ahora</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="inicio">
+  <div class="hero-bg"></div>
+  <div class="hero-grid-lines"></div>
+  <div class="hero-badge">Lima, Perú · Servicio Profesional</div>
+  <h1>Toldos para <em>momentos</em><br>que perduran</h1>
+  <p class="hero-sub">Estructuras elegantes y decoraciones para bodas, quinceañeros, corporativos y celebraciones al aire libre. Diseño, instalación y decoración integral.</p>
+  <div class="hero-actions">
+    <a href="#galeria" class="btn-primary">Ver galería</a>
+    <a href="#contacto" class="btn-outline">Solicitar cotización</a>
+  </div>
+  <div class="hero-scroll">
+    <div class="scroll-line"></div>
+    Scroll
+  </div>
+</section>
+
+<!-- STATS -->
+<div class="stats-bar">
+  <div class="stat-item reveal">
+    <span class="stat-num">+500</span>
+    <span class="stat-label">Eventos realizados</span>
+  </div>
+  <div class="stat-item reveal">
+    <span class="stat-num">+10</span>
+    <span class="stat-label">Años de experiencia</span>
+  </div>
+  <div class="stat-item reveal">
+    <span class="stat-num">100%</span>
+    <span class="stat-label">Clientes satisfechos</span>
+  </div>
+  <div class="stat-item reveal">
+    <span class="stat-num">24h</span>
+    <span class="stat-label">Respuesta garantizada</span>
+  </div>
+</div>
+
+<!-- SERVICIOS -->
+<section id="servicios">
+  <div class="servicios-layout">
+    <div>
+      <p class="section-label reveal">Qué ofrecemos</p>
+      <h2 class="section-title reveal">Soluciones completas<br>para tu <em>evento</em></h2>
+      <p class="section-desc reveal">Ofrecemos toldos de alta calidad para todo tipo de celebración, con instalación profesional y decoración personalizada según tu visión y presupuesto.</p>
+    </div>
+    <div class="servicios-grid">
+      <div class="servicio-card reveal">
+        <span class="servicio-icon">🏕️</span>
+        <h3>Toldos para jardín</h3>
+        <p>Estructuras elegantes para exteriores con telas en colores a elección.</p>
+        <span class="servicio-tag">Personalizable</span>
+      </div>
+      <div class="servicio-card reveal">
+        <span class="servicio-icon">💍</span>
+        <h3>Bodas & matrimonios</h3>
+        <p>Ambientación completa con telas, cortinas y decoración floral incluida.</p>
+        <span class="servicio-tag">Premium</span>
+      </div>
+      <div class="servicio-card reveal">
+        <span class="servicio-icon">🎉</span>
+        <h3>Quinceañeros</h3>
+        <p>Escenografías con luces neón, arcos de globos y back drops temáticos.</p>
+        <span class="servicio-tag">Temático</span>
+      </div>
+      <div class="servicio-card reveal">
+        <span class="servicio-icon">🏢</span>
+        <h3>Eventos corporativos</h3>
+        <p>Toldos modulares transparentes para conferencias y lanzamientos.</p>
+        <span class="servicio-tag">Modular</span>
+      </div>
+      <div class="servicio-card reveal">
+        <span class="servicio-icon">🎂</span>
+        <h3>Cumpleaños & fiestas</h3>
+        <p>Decoración infantil y adultos con globos, back drops y mesas de dulces.</p>
+        <span class="servicio-tag">Festivo</span>
+      </div>
+      <div class="servicio-card reveal">
+        <span class="servicio-icon">✨</span>
+        <h3>Decoración integral</h3>
+        <p>Instalación de luces, cortinas, centros de mesa y detalles personalizados.</p>
+        <span class="servicio-tag">Todo incluido</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- GALERÍA -->
+<section id="galeria">
+  <div class="galeria-header">
+    <div>
+      <p class="section-label reveal">Nuestro trabajo</p>
+      <h2 class="section-title reveal">Galería de <em>eventos</em></h2>
+    </div>
+    <a href="images/foto1.jpeg" class="btn-outline reveal" target="_blank" style="white-space:nowrap;">Ver más →</a>
+  </div>
+
+  <div class="galeria-grid">
+    <div class="galeria-item reveal">
+      <img src="images/foto2.jpeg" alt="Decoración de boda" onerror="this.style.background='#222';this.style.height='300px'">
+      <div class="galeria-overlay">
+        <div class="galeria-line"></div>
+        <h4>Nuestra Boda</h4>
+        <p>Decoración floral & back drop</p>
+      </div>
+    </div>
+    <div class="galeria-item reveal">
+      <img src="images/foto3.jpeg" alt="Cumpleaños 50" onerror="this.style.background='#222'">
+      <div class="galeria-overlay">
+        <div class="galeria-line"></div>
+        <h4>Mis 50 Años</h4>
+        <p>Verde & dorado — back drop</p>
+      </div>
+    </div>
+    <div class="galeria-item reveal">
+      <img src="images/foto4.jpeg" alt="Quinceañero azul" onerror="this.style.background='#222'">
+      <div class="galeria-overlay">
+        <div class="galeria-line"></div>
+        <h4>Mis 15 Años</h4>
+        <p>Temática azul — escenografía</p>
+      </div>
+    </div>
+    <div class="galeria-item reveal">
+      <img src="images/foto5.jpeg" alt="Cumpleaños 50 rosa" onerror="this.style.background='#222'">
+      <div class="galeria-overlay">
+        <div class="galeria-line"></div>
+        <h4>Mis 50 Años</h4>
+        <p>Rosa & dorado — full decoración</p>
+      </div>
+    </div>
+    <div class="galeria-item reveal">
+      <img src="WhatsApp_Image_2026-05-27_at_4_24_32_PM__1_.jpeg" alt="Toldo blanco jardín" onerror="this.style.background='#222'">
+      <div class="galeria-overlay">
+        <div class="galeria-line"></div>
+        <h4>Toldo para jardín</h4>
+        <p>Estructura blanca transparente</p>
+      </div>
+    </div>
+    <div class="galeria-item reveal">
+      <img src="WhatsApp_Image_2026-05-22_at_11_03_43_AM.jpeg" alt="Quinceañero 15" onerror="this.style.background='#222'">
+      <div class="galeria-overlay">
+        <div class="galeria-line"></div>
+        <h4>Mis 15 Años</h4>
+        <p>Neon & butterflies — escenografía</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- POR QUÉ -->
+<section id="porque">
+  <div class="porque-layout">
+    <div>
+      <p class="section-label reveal">Por qué elegirnos</p>
+      <h2 class="section-title reveal">Calidad y <em>elegancia</em><br>en cada detalle</h2>
+      <ul class="porque-list">
+        <li class="reveal">
+          <span class="porque-num">01</span>
+          <div class="porque-text">
+            <h4>Instalación el mismo día</h4>
+            <p>Nuestro equipo llega puntual y monta todo antes del inicio de tu evento.</p>
+          </div>
+        </li>
+        <li class="reveal">
+          <span class="porque-num">02</span>
+          <div class="porque-text">
+            <h4>Materiales de primera calidad</h4>
+            <p>Telas resistentes, estructuras de acero y acabados que lucen impecables en fotos.</p>
+          </div>
+        </li>
+        <li class="reveal">
+          <span class="porque-num">03</span>
+          <div class="porque-text">
+            <h4>Diseño personalizado</h4>
+            <p>Adaptamos colores, tamaños y estilos según tu visión y el tipo de celebración.</p>
+          </div>
+        </li>
+        <li class="reveal">
+          <span class="porque-num">04</span>
+          <div class="porque-text">
+            <h4>Servicio completo</h4>
+            <p>Toldo + decoración + luces + desmontaje. Sin preocupaciones para ti.</p>
+          </div>
+        </li>
+      </ul>
+    </div>
+    <div class="porque-img-wrap reveal">
+      <img src="WhatsApp_Image_2026-05-27_at_4_24_32_PM.jpeg" alt="Toldo evento" onerror="this.style.background='#222';this.style.minHeight='400px'">
+      <div class="porque-img-badge">
+        <strong>+10</strong>
+        <span>años en Lima</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACTO -->
+<section id="contacto">
+  <div class="contacto-layout">
+    <div>
+      <p class="section-label reveal">Contáctanos</p>
+      <h2 class="section-title reveal">Cotiza tu <em>evento</em><br>hoy mismo</h2>
+      <div class="contact-info reveal">
+        <div class="contact-item">
+          <div class="contact-icon">📱</div>
+          <div>
+            <h4>WhatsApp</h4>
+            <p><a href="https://wa.me/51923756071" target="_blank">+51 923 756 071</a></p>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-icon">📍</div>
+          <div>
+            <h4>Cobertura</h4>
+            <p>Lima Metropolitana y provincias</p>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-icon">🕐</div>
+          <div>
+            <h4>Atención</h4>
+            <p>Lunes a Domingo · 8am – 8pm</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="reveal">
+      <form onsubmit="handleSubmit(event)">
+        <div class="form-row">
+          <div class="form-group">
+            <label>Nombre completo</label>
+            <input type="text" id="nombre" placeholder="Tu nombre" required>
+          </div>
+          <div class="form-group">
+            <label>Teléfono / WhatsApp</label>
+            <input type="tel" id="telefono" placeholder="+51 9XX XXX XXX" required>
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Tipo de evento</label>
+          <select id="evento" required>
+            <option value="" disabled selected>Selecciona una opción</option>
+            <option>Boda / Matrimonio</option>
+            <option>Quinceañero</option>
+            <option>Cumpleaños</option>
+            <option>Evento corporativo</option>
+            <option>Bautizo / Baby shower</option>
+            <option>Otro</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Fecha del evento</label>
+          <input type="date" id="fecha">
+        </div>
+        <div class="form-group">
+          <label>Mensaje (opcional)</label>
+          <textarea id="mensaje" placeholder="Cuéntanos sobre tu evento, número de invitados, espacio..."></textarea>
+        </div>
+        <button type="submit" class="btn-primary" style="width:100%">Enviar por WhatsApp →</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">Toldos <span>& Eventos</span></div>
+  <p>© 2026 · Lima, Perú · Todos los derechos reservados</p>
+  <div class="footer-links">
+    <a href="#servicios">Servicios</a>
+    <a href="#galeria">Galería</a>
+    <a href="#contacto">Contacto</a>
+  </div>
+</footer>
+
+<!-- WHATSAPP FLOAT -->
+<a href="https://wa.me/51923756071" class="wa-float" target="_blank" title="Escríbenos por WhatsApp">
+  <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
+  </svg>
+</a>
+
+<script>
+  // Navbar scroll
+  const navbar = document.getElementById('navbar');
+  window.addEventListener('scroll', () => {
+    navbar.classList.toggle('scrolled', window.scrollY > 60);
+  });
+
+  // Reveal on scroll
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) {
+        setTimeout(() => entry.target.classList.add('visible'), i * 60);
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1 });
+  reveals.forEach(el => observer.observe(el));
+
+  // Counter animation
+  function animateCounter(el, target, suffix = '') {
+    let current = 0;
+    const step = Math.ceil(target / 60);
+    const timer = setInterval(() => {
+      current = Math.min(current + step, target);
+      el.textContent = (current === target ? '+' : '') + current + suffix;
+      if (current >= target) clearInterval(timer);
+    }, 30);
+  }
+
+  // Form → WhatsApp
+  function handleSubmit(e) {
+    e.preventDefault();
+    const nombre = document.getElementById('nombre').value;
+    const telefono = document.getElementById('telefono').value;
+    const evento = document.getElementById('evento').value;
+    const fecha = document.getElementById('fecha').value;
+    const mensaje = document.getElementById('mensaje').value;
+    const text = encodeURIComponent(
+      `Hola! Me interesa cotizar un toldo para mi evento.\n\n` +
+      `👤 Nombre: ${nombre}\n📱 Teléfono: ${telefono}\n🎉 Evento: ${evento}\n` +
+      `📅 Fecha: ${fecha || 'Por definir'}\n💬 Mensaje: ${mensaje || 'Sin mensaje adicional'}`
+    );
+    window.open(`https://wa.me/51923756071?text=${text}`, '_blank');
+  }
+</script>
+</body>
+</html>
