@@ -351,6 +351,55 @@
   .footer-links { display: flex; gap: 2rem; }
   .footer-links a { font-size: 0.75rem; color: var(--text-muted); text-decoration: none; letter-spacing: 0.1em; text-transform: uppercase; }
   .footer-links a:hover { color: var(--gold); }
+  .galeria-grid{
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px;
+}
+
+.galeria-item{
+  position: relative;
+  overflow: hidden;
+  border-radius: 20px;
+  height: 320px;
+}
+
+.galeria-item img{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform .4s ease;
+}
+
+.galeria-item:hover img{
+  transform: scale(1.05);
+}
+
+.galeria-overlay{
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to top,
+    rgba(0,0,0,.75),
+    rgba(0,0,0,.15)
+  );
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 24px;
+  color: white;
+}
+
+@media(max-width:768px){
+  .galeria-grid{
+    grid-template-columns: 1fr;
+  }
+
+  .galeria-item{
+    height: 280px;
+  }
+}
 
   /* ANIMATIONS */
   @keyframes fadeUp {
@@ -498,7 +547,6 @@
   </div>
 </section>
 
-quiero solo que modifqwues el que te di y pongas los nombre de misarchivos que se llaman foto y un  numero
 <!-- GALERÍA -->
 <section id="galeria">
   <div class="galeria-header">
@@ -521,7 +569,7 @@ quiero solo que modifqwues el que te di y pongas los nombre de misarchivos que s
     </div>
 
     <div class="galeria-item reveal">
-      <img src="images/foto2.jpeg" alt="Cumpleaños 50" onerror="this.style.background='#222'">
+      <img src="images/foto4.jpeg" alt="Cumpleaños 50" onerror="this.style.background='#222'">
       <div class="galeria-overlay">
         <div class="galeria-line"></div>
         <h4>Mis 50 Años</h4>
@@ -530,7 +578,7 @@ quiero solo que modifqwues el que te di y pongas los nombre de misarchivos que s
     </div>
 
     <div class="galeria-item reveal">
-      <img src="images/foto3.jpeg" alt="Quinceañero azul" onerror="this.style.background='#222'">
+      <img src="images/foto5.jpeg" alt="Quinceañero azul" onerror="this.style.background='#222'">
       <div class="galeria-overlay">
         <div class="galeria-line"></div>
         <h4>Mis 15 Años</h4>
@@ -539,7 +587,7 @@ quiero solo que modifqwues el que te di y pongas los nombre de misarchivos que s
     </div>
 
     <div class="galeria-item reveal">
-      <img src="images/foto4.jpeg" alt="Cumpleaños 50 rosa" onerror="this.style.background='#222'">
+      <img src="images/foto7.jpeg" alt="Cumpleaños 50 rosa" onerror="this.style.background='#222'">
       <div class="galeria-overlay">
         <div class="galeria-line"></div>
         <h4>Mis 50 Años</h4>
